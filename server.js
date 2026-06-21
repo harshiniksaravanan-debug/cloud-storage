@@ -8,12 +8,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Cloud Storage API', version: '1.0.0' });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {

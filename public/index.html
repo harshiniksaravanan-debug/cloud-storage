@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudStorage</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Auth Section -->
+  <div id="auth-section" class="section">
+    <div class="card auth-card">
+      <h1>CloudStorage</h1>
+      <p class="subtitle">Secure file storage with access control</p>
+
+      <div class="tab-bar">
+        <button class="tab active" onclick="showTab('login')">Login</button>
+        <button class="tab" onclick="showTab('register')">Register</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <input type="text" placeholder="Username" id="login-username" required>
+        <input type="password" placeholder="Password" id="login-password" required>
+        <button type="submit" class="btn-primary">Login</button>
+        <p id="login-error" class="error-msg"></p>
+      </form>
+
+      <form id="register-form" class="auth-form hidden">
+        <input type="text" placeholder="Username" id="reg-username" required>
+        <input type="email" placeholder="Email" id="reg-email" required>
+        <input type="password" placeholder="Password" id="reg-password" required>
+        <button type="submit" class="btn-primary">Register</button>
+        <p id="reg-error" class="error-msg"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div id="dashboard-section" class="section hidden">
+    <header class="dashboard-header">
+      <h1>CloudStorage</h1>
+      <div class="header-right">
+        <span id="user-display"></span>
+        <button class="btn-outline" onclick="logout()">Logout</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Upload -->
+      <div class="card upload-card">
+        <h2>Upload File</h2>
+        <form id="upload-form">
+          <input type="file" id="file-input" required>
+          <button type="submit" class="btn-primary">Upload</button>
+        </form>
+        <p id="upload-status" class="success-msg"></p>
+      </div>
+
+      <!-- My Files -->
+      <div class="card">
+        <h2>My Files</h2>
+        <div id="owned-files">
+          <p class="empty">No files uploaded yet.</p>
+        </div>
+      </div>
+
+      <!-- Shared With Me -->
+      <div class="card">
+        <h2>Shared With Me</h2>
+        <div id="shared-files">
+          <p class="empty">No files shared with you.</p>
+        </div>
+      </div>
+
+      <!-- Public Files -->
+      <div class="card">
+        <h2>Public Files</h2>
+        <div id="public-files">
+          <p class="empty">No public files.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div id="share-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeShareModal()">&times;</span>
+      <h3>Share File</h3>
+      <p id="share-file-name"></p>
+      <input type="text" id="share-username" placeholder="Username to share with">
+      <select id="share-permission">
+        <option value="read">Read</option>
+        <option value="write">Write</option>
+      </select>
+      <button class="btn-primary" onclick="shareFile()">Share</button>
+      <p id="share-status" class="success-msg"></p>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
